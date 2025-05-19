@@ -1,5 +1,5 @@
 // Domain Restriction
-const ALLOWED_DOMAIN = 'gameforgeweb.github.io';
+const ALLOWED_DOMAIN = 'nyancat999.github.io';
 
 function validateDomain() {
     const currentHost = window.location.hostname;
