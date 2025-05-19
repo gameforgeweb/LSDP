@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - LS Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">LS Details</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="todo.html">To-Do List</a>
+            <a href="service-log.html">Service Log</a>
+            <a href="expenses.html" class="active">Expense Tracker</a>
+            <a href="ideas.html">Ideas & Improvements</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Business Expenses</h1>
+            <div class="header-actions">
+                <button class="btn" id="addExpenseBtn">Add Expense</button>
+                <button class="btn" id="exportBtn">Export to CSV</button>
+            </div>
+        </header>
+
+        <div class="expense-controls">
+            <div class="search-box">
+                <input type="text" id="searchExpense" placeholder="Search expenses...">
+            </div>
+            <div class="filter-box">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="supplies">Supplies</option>
+                    <option value="fuel">Fuel</option>
+                    <option value="misc">Miscellaneous</option>
+                </select>
+            </div>
+            <div class="date-range">
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Expenses</h3>
+                <p id="totalExpenses">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>This Month</h3>
+                <p id="monthlyExpenses">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Average per Month</h3>
+                <p id="averageExpenses">$0.00</p>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                    <!-- Table content will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add/Edit Expense Modal -->
+        <div id="expenseModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Add Expense</h2>
+                <form id="expenseForm">
+                    <input type="hidden" id="expenseId">
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseItem">Item</label>
+                        <input type="text" id="expenseItem" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" required>
+                            <option value="supplies">Supplies</option>
+                            <option value="fuel">Fuel</option>
+                            <option value="misc">Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount</label>
+                        <input type="number" id="expenseAmount" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseNotes">Notes</label>
+                        <textarea id="expenseNotes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Save Expense</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/expenses.js"></script>
+</body>
+</html> 

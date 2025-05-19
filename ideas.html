@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideas & Improvements - LS Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">LS Details</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="todo.html">To-Do List</a>
+            <a href="service-log.html">Service Log</a>
+            <a href="expenses.html">Expense Tracker</a>
+            <a href="ideas.html" class="active">Ideas & Improvements</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Brainstorm & Improvements</h1>
+            <div class="header-actions">
+                <button class="btn" id="addIdeaBtn">Add New Idea</button>
+                <button class="btn" id="exportBtn">Export to CSV</button>
+            </div>
+        </header>
+
+        <div class="ideas-controls">
+            <div class="search-box">
+                <input type="text" id="searchIdeas" placeholder="Search ideas...">
+            </div>
+            <div class="filter-box">
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="implemented">Implemented</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ideas-container">
+            <div class="ideas-grid" id="ideasGrid">
+                <!-- Ideas will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Add/Edit Idea Modal -->
+        <div id="ideaModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Add New Idea</h2>
+                <form id="ideaForm">
+                    <input type="hidden" id="ideaId">
+                    <div class="form-group">
+                        <label for="ideaTitle">Title</label>
+                        <input type="text" id="ideaTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ideaDescription">Description</label>
+                        <textarea id="ideaDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ideaStatus">Status</label>
+                        <select id="ideaStatus" required>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="implemented">Implemented</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ideaPriority">Priority</label>
+                        <select id="ideaPriority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ideaNotes">Additional Notes</label>
+                        <textarea id="ideaNotes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Save Idea</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/ideas.js"></script>
+</body>
+</html> 

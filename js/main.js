@@ -34,49 +34,155 @@ function validateDomain() {
     return true;
 }
 
-// Data Storage Keys
-const STORAGE_KEYS = {
-    INVENTORY: 'lsDetails_inventory',
-    TODO: 'lsDetails_todo',
-    SERVICE_LOG: 'lsDetails_serviceLog',
-    EXPENSES: 'lsDetails_expenses',
-    IDEAS: 'lsDetails_ideas'
+// Animation and UI Enhancement
+document.addEventListener('DOMContentLoaded', () => {
+    // Add animation delays to navigation cards
+    const navCards = document.querySelectorAll('.nav-card');
+    navCards.forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+
+    // Add animation delays to stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach((card, index) => {
+        card.style.setProperty('--stat-index', index);
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add loading state to buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+            if (!this.classList.contains('btn-danger')) {
+                this.classList.add('loading');
+                setTimeout(() => {
+                    this.classList.remove('loading');
+                }, 500);
+            }
+        });
+    });
+
+    // Enhanced form interactions
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    });
+
+    // Add hover effect to table rows
+    document.querySelectorAll('table tr').forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+
+    // Enhanced modal interactions
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        const content = modal.querySelector('.modal-content');
+        
+        modal.addEventListener('show', () => {
+            content.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                content.style.transform = 'scale(1)';
+            }, 50);
+        });
+    });
+
+    // Add intersection observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe elements that should fade in
+    document.querySelectorAll('.table-container, .stats-container, .task-section').forEach(el => {
+        observer.observe(el);
+    });
+});
+
+// Enhanced notification system
+const notifications = {
+    show: (message, type = 'success') => {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        // Trigger animation
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        // Remove notification after delay
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }
 };
 
-// Utility Functions
+// Storage utility with enhanced error handling
 const storage = {
     save: (key, data) => {
-        if (!validateDomain()) return false;
         try {
             localStorage.setItem(key, JSON.stringify(data));
             return true;
         } catch (error) {
-            console.error('Error saving data:', error);
+            console.error('Error saving to localStorage:', error);
+            notifications.show('Error saving data', 'error');
             return false;
         }
     },
-
+    
     load: (key) => {
-        if (!validateDomain()) return null;
         try {
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error('Error loading data:', error);
+            console.error('Error loading from localStorage:', error);
+            notifications.show('Error loading data', 'error');
             return null;
         }
-    },
-
-    clear: (key) => {
-        if (!validateDomain()) return false;
-        try {
-            localStorage.removeItem(key);
-            return true;
-        } catch (error) {
-            console.error('Error clearing data:', error);
-            return false;
-        }
     }
+};
+
+// Storage keys
+const STORAGE_KEYS = {
+    INVENTORY: 'lsd_inventory',
+    TODO: 'lsd_todo',
+    SERVICE_LOG: 'lsd_service_log',
+    EXPENSES: 'lsd_expenses',
+    IDEAS: 'lsd_ideas'
 };
 
 // CSV Export Function
@@ -101,29 +207,6 @@ const exportToCSV = (data, filename) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-};
-
-// Notification System
-const notifications = {
-    show: (message, type = 'info') => {
-        if (!validateDomain()) return;
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
 };
 
 // Form Validation
@@ -156,18 +239,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
-    });
-
-    // Add smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
     });
 }); 
