@@ -1,0 +1,367 @@
+:root {
+    --primary-black: #121212;
+    --secondary-black: #1e1e1e;
+    --silver: #c0c0c0;
+    --light-silver: #e0e0e0;
+    --dark-silver: #808080;
+    --accent-gray: #2d2d2d;
+    --text-white: #ffffff;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background-color: var(--primary-black);
+    color: var(--text-white);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Racing Sans One', cursive;
+    color: var(--silver);
+}
+
+.main-nav {
+    background-color: var(--secondary-black);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.5rem;
+    color: var(--silver);
+}
+
+.nav-links a {
+    color: var(--light-silver);
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color var(--transition-speed);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--silver);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--light-silver);
+}
+
+.main-question {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.navigation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.nav-card {
+    background-color: var(--secondary-black);
+    padding: 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-white);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.nav-card p {
+    color: var(--light-silver);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin: 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .navigation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Utility Classes */
+.btn {
+    background-color: var(--silver);
+    color: var(--primary-black);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.btn:hover {
+    background-color: var(--light-silver);
+}
+
+/* Form Styles */
+input, select, textarea {
+    background-color: var(--secondary-black);
+    border: 1px solid var(--dark-silver);
+    color: var(--text-white);
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--silver);
+}
+
+/* Inventory Page Styles */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.inventory-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search-box {
+    flex: 1;
+    max-width: 300px;
+}
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--secondary-black);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--accent-gray);
+}
+
+.inventory-table th {
+    background-color: var(--accent-gray);
+    color: var(--silver);
+}
+
+.status-ok {
+    color: #4CAF50;
+}
+
+.status-low {
+    color: #FFC107;
+}
+
+.status-out {
+    color: #F44336;
+}
+
+.btn-small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+
+.btn-danger {
+    background-color: #F44336;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #D32F2F;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--secondary-black);
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    color: var(--light-silver);
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+.close:hover {
+    color: var(--silver);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--light-silver);
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    background-color: var(--secondary-black);
+    color: var(--text-white);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.error {
+    background-color: #F44336;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .inventory-table {
+        font-size: 0.875rem;
+    }
+
+    .inventory-table th,
+    .inventory-table td {
+        padding: 0.75rem;
+    }
+
+    .btn-small {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .modal-content {
+        margin: 20% auto;
+        padding: 1.5rem;
+    }
+} 
