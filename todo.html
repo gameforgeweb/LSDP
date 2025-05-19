@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tasks - LS Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">LS Details</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="todo.html" class="active">To-Do List</a>
+            <a href="service-log.html">Service Log</a>
+            <a href="expenses.html">Expense Tracker</a>
+            <a href="ideas.html">Ideas & Improvements</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Daily Detailing Tasks</h1>
+            <div class="header-actions">
+                <button class="btn" id="addTaskBtn">Add Custom Task</button>
+                <button class="btn" id="resetTasksBtn">Reset Completed</button>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="taskProgress"></div>
+            </div>
+            <span class="progress-text" id="progressText">0% Complete</span>
+        </div>
+
+        <div class="task-sections">
+            <section class="task-section">
+                <h2>Morning Prep</h2>
+                <div class="task-list" id="morningTasks">
+                    <!-- Tasks will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="task-section">
+                <h2>During Service</h2>
+                <div class="task-list" id="serviceTasks">
+                    <!-- Tasks will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="task-section">
+                <h2>End of Day</h2>
+                <div class="task-list" id="endTasks">
+                    <!-- Tasks will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Add Task Modal -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Custom Task</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskName">Task Name</label>
+                        <input type="text" id="taskName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskSection">Section</label>
+                        <select id="taskSection" required>
+                            <option value="morning">Morning Prep</option>
+                            <option value="service">During Service</option>
+                            <option value="end">End of Day</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Add Task</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/todo.js"></script>
+</body>
+</html> 

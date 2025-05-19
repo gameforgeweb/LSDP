@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Log - LS Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">LS Details</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="todo.html">To-Do List</a>
+            <a href="service-log.html" class="active">Service Log</a>
+            <a href="expenses.html">Expense Tracker</a>
+            <a href="ideas.html">Ideas & Improvements</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Service Records</h1>
+            <div class="header-actions">
+                <button class="btn" id="addServiceBtn">Add Service</button>
+                <button class="btn" id="exportBtn">Export to CSV</button>
+            </div>
+        </header>
+
+        <div class="service-controls">
+            <div class="search-box">
+                <input type="text" id="searchService" placeholder="Search services...">
+            </div>
+            <div class="date-filter">
+                <input type="date" id="dateFilter">
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Today</h3>
+                <p id="todayCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>This Week</h3>
+                <p id="weekCount">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>This Month</h3>
+                <p id="monthCount">0</p>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Car Model</th>
+                        <th>Service Performed</th>
+                        <th>Customer Notes</th>
+                        <th>Next Service Due</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="serviceTableBody">
+                    <!-- Table content will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add/Edit Service Modal -->
+        <div id="serviceModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Add Service Record</h2>
+                <form id="serviceForm">
+                    <input type="hidden" id="serviceId">
+                    <div class="form-group">
+                        <label for="serviceDate">Date</label>
+                        <input type="date" id="serviceDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="carModel">Car Model</label>
+                        <input type="text" id="carModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">Service Performed</label>
+                        <select id="serviceType" required>
+                            <option value="Basic Wash">Basic Wash</option>
+                            <option value="Premium Detail">Premium Detail</option>
+                            <option value="Interior Detail">Interior Detail</option>
+                            <option value="Exterior Detail">Exterior Detail</option>
+                            <option value="Full Detail">Full Detail</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerNotes">Customer Notes</label>
+                        <textarea id="customerNotes" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nextService">Next Service Due</label>
+                        <input type="date" id="nextService">
+                    </div>
+                    <button type="submit" class="btn">Save Record</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/service-log.js"></script>
+</body>
+</html> 
