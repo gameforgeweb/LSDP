@@ -1,30 +1,16 @@
 // Default tasks for each section
 const DEFAULT_TASKS = {
-    morning: [
-        'Gather all necessary towels',
-        'Check and prepare cleaning supplies',
-        'Inspect equipment functionality',
-        'Review today\'s appointments'
-    ],
-    service: [
-        'Wash exterior thoroughly',
-        'Clean wheels and tires',
-        'Vacuum interior',
-        'Clean windows and mirrors',
-        'Apply tire shine',
-        'Polish exterior'
-    ],
-    end: [
-        'Clean and store equipment',
-        'Update inventory levels',
-        'Record completed services',
-        'Prepare for next day'
-    ]
+    morning: [],
+    service: [],
+    end: []
 };
 
 class TodoManager {
     constructor() {
-        this.tasks = storage.load(STORAGE_KEYS.TODO) || this.initializeDefaultTasks();
+        // Clear existing tasks on initialization for this specific request
+        this.tasks = this.initializeDefaultTasks(); // This will now initialize with empty arrays
+        storage.save(STORAGE_KEYS.TODO, this.tasks); // Save the empty state
+        
         this.modal = document.getElementById('taskModal');
         this.form = document.getElementById('taskForm');
         
