@@ -73,8 +73,9 @@ class IdeasManager {
             dateAdded: new Date().toISOString()
         };
 
-        if (!formData.title.trim() || !formData.description.trim()) {
-            notifications.show('Please fill in all required fields', 'error');
+        const validation = validateForm(formData, ['title', 'description', 'status', 'priority']);
+         if (!validation.isValid) {
+             notifications.show(`Please fill in the required field: ${validation.missingField}`, 'error');
             return;
         }
 

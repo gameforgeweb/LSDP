@@ -80,8 +80,15 @@ class ExpenseManager {
             notes: document.getElementById('expenseNotes').value
         };
 
-        if (!formData.date || !formData.item || !formData.category || isNaN(formData.amount)) {
-            notifications.show('Please fill in all required fields', 'error');
+        const validation = validateForm(formData, ['date', 'item', 'category', 'amount']);
+        if (!validation.isValid) {
+             notifications.show(`Please fill in the required field: ${validation.missingField}`, 'error');
+            return;
+        }
+
+        // Also check if amount is a valid number
+        if (isNaN(formData.amount)) {
+            notifications.show('Please enter a valid amount', 'error');
             return;
         }
 

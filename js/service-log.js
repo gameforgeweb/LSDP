@@ -180,8 +180,9 @@ class ServiceManager {
             nextServiceDue: document.getElementById('nextService').value
         };
 
-        if (!formData.date || !formData.carModel || !formData.servicePerformed) {
-            notifications.show('Please fill in all required fields', 'error');
+        const validation = validateForm(formData, ['date', 'carModel', 'servicePerformed']);
+        if (!validation.isValid) {
+            notifications.show(`Please fill in the required field: ${validation.missingField}`, 'error');
             return;
         }
 

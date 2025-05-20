@@ -109,4 +109,14 @@ const STORAGE_KEYS = {
     SERVICE_LOG: 'lsd_service_log',
     EXPENSES: 'lsd_expenses',
     IDEAS: 'lsd_ideas'
-}; 
+};
+
+// Basic form validation utility
+function validateForm(formData, requiredFields) {
+    for (const field of requiredFields) {
+        if (!formData[field]) {
+            return { isValid: false, missingField: field };
+        }
+    }
+    return { isValid: true };
+} 
