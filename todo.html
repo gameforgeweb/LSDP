@@ -85,5 +85,13 @@
 
     <script src="js/utils.js"></script>
     <script src="js/todo.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html> 

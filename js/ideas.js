@@ -73,8 +73,13 @@ class IdeasManager {
             dateAdded: new Date().toISOString()
         };
 
+        console.log('Saving Idea - formData:', formData);
+
         const validation = validateForm(formData, ['title', 'description', 'status', 'priority']);
-         if (!validation.isValid) {
+         
+        console.log('Validation Result:', validation);
+
+        if (!validation.isValid) {
              notifications.show(`Please fill in the required field: ${validation.missingField}`, 'error');
             return;
         }

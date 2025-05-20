@@ -38,6 +38,7 @@ class InventoryManager {
     }
 
     openModal(item = null) {
+        console.log('Opening Inventory Modal with item:', item);
         this.modal.style.display = 'block';
         if (item) {
             document.getElementById('modalTitle').textContent = 'Edit Item';
@@ -65,7 +66,12 @@ class InventoryManager {
             lastUpdated: new Date().toLocaleDateString()
         };
 
+        console.log('Saving Inventory Item - formData:', formData);
+
         const validation = validateForm(formData, ['name', 'quantity', 'reorderLevel']);
+        
+        console.log('Validation Result:', validation);
+
         if (!validation.isValid) {
             notifications.show('Please fill in all required fields', 'error');
             return;
