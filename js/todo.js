@@ -167,11 +167,11 @@ class TodoManager {
                         <input type="checkbox" ${task.completed ? 'checked' : ''}>
                         <span class="task-name">${task.name}</span>
                     </label>
-                    ${!task.isDefault ? `
+                    
                         <button class="btn btn-small btn-danger" onclick="todoManager.deleteTask('${section}', '${task.id}')">
                             Delete
                         </button>
-                    ` : ''}
+                    
                 `;
 
                 const checkbox = taskElement.querySelector('input[type="checkbox"]');
