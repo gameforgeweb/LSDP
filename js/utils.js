@@ -72,4 +72,41 @@ function formatCurrency(amount) {
         style: 'currency',
         currency: 'USD'
     }).format(amount);
-} 
+}
+
+// Basic Storage Utility using localStorage
+const storage = {
+    save: (key, data) => {
+        try {
+            localStorage.setItem(key, JSON.stringify(data));
+        } catch (e) {
+            console.error('Error saving to localStorage', e);
+        }
+    },
+    load: (key) => {
+        try {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        } catch (e) {
+            console.error('Error loading from localStorage', e);
+            return null;
+        }
+    }
+};
+
+// Basic Notification Utility (using console log for now)
+const notifications = {
+    show: (message, type = 'info') => {
+        console.log(`Notification (${type}): ${message}`);
+        // TODO: Implement actual visual notifications
+    }
+};
+
+// Define storage keys
+const STORAGE_KEYS = {
+    INVENTORY: 'lsd_inventory',
+    TODO: 'lsd_todo',
+    SERVICE_LOG: 'lsd_service_log',
+    EXPENSES: 'lsd_expenses',
+    IDEAS: 'lsd_ideas'
+}; 
